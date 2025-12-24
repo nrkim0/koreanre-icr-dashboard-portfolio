@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICR Dashboard</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="icon" href="./assets/images/favicon.ico">
+  </head>
+  <body>
+    <div class="layout">
+      <!-- LNB -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo mb-4">
+          <img id="logoImg" src="assets/images/logo-full.svg" alt="ICR" />
+        </div>
+        <ul class="sidebar-menu">
+          <p class="title xsmall mb-1 ms-3 mb-2 text-secondary">사용자용 메뉴</p>
+          <li>
+            <a href="index.html" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-dashboard.svg" 
+                data-default="assets/icon/icon-dashboard.svg"
+                data-active="assets/icon/icon-dashboard-white.svg"
+                alt="대시보드" />
+              </span>
+              <span class="text">대시보드</span>
+            </a>
+          </li>
+          <li>
+            <a href="document-regi.html" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-library-add.svg" 
+                data-default="assets/icon/icon-library-add.svg"
+                data-active="assets/icon/icon-library-add-white.svg"
+                alt="문서 등록" />
+              </span>
+              <span class="text">
+                <span>문서 등록</span>
+                <span class="menu-badge" data-count="3">3</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-user01.svg" 
+                data-default="assets/icon/icon-user01.svg"
+                data-active="assets/icon/icon-user01-white.svg"
+                alt="내 업무" />
+              </span>
+              <span class="text">
+                <span>내 업무</span>
+                <span class="menu-badge" data-count="10">10</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-reader.svg" 
+                data-default="assets/icon/icon-reader.svg"
+                data-active="assets/icon/icon-reader-white.svg"
+                alt="단건 처리" />
+              </span>
+              <span class="text">단건 처리</span>
+            </a>
+          </li>
+          <li>
+            <a href="processing.html" class="menu-item active">
+              <span class="icon">
+                <img src="assets/icon/icon-edit.svg" 
+                data-default="assets/icon/icon-edit.svg"
+                data-active="assets/icon/icon-edit-white.svg"
+                alt="일괄 처리" />
+              </span>
+              <span class="text">일괄 처리</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-find-page.svg" 
+                data-default="assets/icon/icon-find-page.svg"
+                data-active="assets/icon/icon-find-page-white.svg"
+                alt="문서 조회" />
+              </span>
+              <span class="text">문서 조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-archive.svg" 
+                data-default="assets/icon/icon-archive.svg"
+                data-active="assets/icon/icon-archive-white.svg"
+                alt="처리 현황" />
+              </span>
+              <span class="text">처리 현황</span>
+            </a>
+          </li>
+          <p class="title xsmall mb-1 ms-3 mb-2 mt-2 text-secondary">관리자용 메뉴</p>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-supervisor.svg" 
+                data-default="assets/icon/icon-supervisor.svg"
+                data-active="assets/icon/icon-supervisor-white.svg"
+                alt="사용자 관리" />
+              </span>
+              <span class="text">사용자 관리</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-scan.svg" 
+                data-default="assets/icon/icon-scan.svg"
+                data-active="assets/icon/icon-scan-white.svg"
+                alt="인식 설정" />
+              </span>
+              <span class="text">인식 설정</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- main -->
+      <div class="main">
+        <!-- header -->
+        <header class="topbar">
+          <div class="d-flex align-items-center gap-3">
+            <button id="btnToggle" class="icon-menu"></button>
+            <p class="title">일괄 처리</p>
+          </div>
+          <div class="topbar-right">
+            <!-- 유저 -->
+            <div class="user-info">
+              <i class="icon-user02"></i>
+              <div class="d-flex flex-column">
+                <p>User1</p>
+                <span>user1@mail.com</span>
+              </div>
+            </div>
+            <!-- 알림 팝업-->
+            <div class="dropdown mt-1">
+              <button class="notify" data-bs-toggle="dropdown"></button>
+              <div class="dropdown-menu notification-box">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-start mb-4 justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <i class="icon icon-alert me-3"></i>
+                      <div class="d-flex flex-column">
+                        <p class="fs-5 fw-bold">알림</p>
+                        <small class="text-secondary">업무 및 시스템 관련 최신 알림을 확인하세요.</small>
+                      </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="dropdown" aria-label="Close"></button>
+                  </div>
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <div>
+                      <p class="fs-6 fw-bold">오류/장애 발생 알림</p>
+                      <small class="text-secondary">일부 메뉴 접근이 일시적으로 제한되었습니다. 변경사항을..</small>
+                    </div>
+                    <i class="icon icon-more"></i>   
+                  </div>
+                  <button class="btn btn-primary flex-fill height-40">알림 전체보기</button>
+                </div>
+              </div>
+            </div>
+            <!-- 로그아웃 -->
+            <button class="logout" data-bs-toggle="modal" data-bs-target="#logoutModal"></button>
+            <div class="modal fade logout-modal" id="logoutModal" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-3 width-control">
+                  <div class="d-flex justify-content-between align-items-start mb-4">
+                      <div>
+                        <p class="fs-5 fw-bold mb-1">로그아웃</p>
+                        <small class="text-secondary">로그아웃 하시겠습니까?</small>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="d-flex justify-content-end gap-1">
+                      <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">닫기</button>
+                      <button class="btn btn-primary">확인</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </header>
+
+        <!-- content -->
+        <section class="content processing-layout">
+          <!-- section1 -->
+          <div class="mb-4">
+            <!-- 탭 영역 -->
+            <div class="col-12 d-flex justify-content-between align-items-center">
+              <div class="training-tabs">
+                <button class="tab-btn active" data-tab="before">Before Training</button>
+                <button class="tab-btn" data-tab="after">After Training</button>
+              </div>
+              <!-- 우측 버튼 영역 -->
+                  <div class="d-flex gap-1">
+                    <button class="btn btn-outline-secondary">삭제</button>
+                    <button class="btn btn-outline-primary">문서 업로드</button>
+                    <button class="btn btn-primary ">Add Training</button>
+                    <button class="btn btn-primary ">UI Training</button>
+                    <button class="btn btn-primary ">document Training</button>
+                  </div>
+                </div>
+              <div class="tab-contents table-scroll">
+                <div class="tab-content active" id="before">
+                  <div class="card-body p-0 table-wrap">
+                  <table class="table mb-0">
+                    <colgroup>
+                      <col>
+                      <col style="width:120px;">
+                      <col style="width: 240px;">
+                      <col>
+                      <col>
+                      <col>
+                      <col>
+                      <col>
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th style="width:40px;"><input class="form-check-input" type="checkbox"></th>
+                        <th>파일 명</th>
+                        <th>문서 제목</th>
+                        <th>출재사명</th>
+                        <th>계약명</th>
+                        <th>UY</th>
+                        <th>코드</th>
+                        <th>단위</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_02</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+                <div class="tab-content" id="after">
+                  <div class="card-body p-0 table-wrap">
+                  <table class="table mb-0">
+                    <colgroup>
+                      <col>
+                      <col style="width:120px;">
+                      <col style="width: 240px;">
+                      <col>
+                      <col>
+                      <col>
+                      <col>
+                      <col>
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th style="width:40px;"><input class="form-check-input" type="checkbox"></th>
+                        <th>파일 명</th>
+                        <th>문서 제목</th>
+                        <th>출재사명</th>
+                        <th>계약명</th>
+                        <th>UY</th>
+                        <th>코드</th>
+                        <th>단위</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr class="active">
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      <tr>
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>4521976.tif</td>
+                        <td>Document Name_01</td>
+                        <td>
+                          <div class="col">
+                            <select class="form-select">
+                              <option>ABC-000123</option>
+                              <option>ABC-000456</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>Contract Name_2678</td>
+                        <td>2023</td>
+                        <td>OPR</td>
+                        <td>KE</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+
+     // 탭 영역
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tab;
+
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+
+        btn.classList.add("active");
+        document.getElementById(target).classList.add("active");
+      });
+    });
+
+    </script>
+  </body>
+</html>

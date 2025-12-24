@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICR Dashboard</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="icon" href="./assets/images/favicon.ico">
+  </head>
+  <body>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="startModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title">안내</h5>
+          </div>
+
+          <div class="modal-body">
+            해당 페이지로 이동하시겠습니까?
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              취소
+            </button>
+            <button type="button" class="btn btn-primary" id="movePageBtn">
+              이동
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+
+    <div class="layout">
+      <!-- LNB -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo mb-4">
+          <img id="logoImg" src="assets/images/logo-full.svg" alt="ICR" />
+        </div>
+        <ul class="sidebar-menu">
+          <p class="title xsmall mb-1 ms-3 mb-2 text-secondary">사용자용 메뉴</p>
+          <li>
+            <a href="index.html" class="menu-item active">
+              <span class="icon">
+                <img src="assets/icon/icon-dashboard.svg" 
+                data-default="assets/icon/icon-dashboard.svg"
+                data-active="assets/icon/icon-dashboard-white.svg"
+                alt="대시보드" />
+              </span>
+              <span class="text">대시보드</span>
+            </a>
+          </li>
+          <li>
+            <a href="document-regi.html" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-library-add.svg" 
+                data-default="assets/icon/icon-library-add.svg"
+                data-active="assets/icon/icon-library-add-white.svg"
+                alt="문서 등록" />
+              </span>
+              <span class="text">
+                <span>문서 등록</span>
+                <span class="menu-badge" data-count="3">3</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-user01.svg" 
+                data-default="assets/icon/icon-user01.svg"
+                data-active="assets/icon/icon-user01-white.svg"
+                alt="내 업무" />
+              </span>
+              <span class="text">
+                <span>내 업무</span>
+                <span class="menu-badge" data-count="10">10</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-reader.svg" 
+                data-default="assets/icon/icon-reader.svg"
+                data-active="assets/icon/icon-reader-white.svg"
+                alt="단건 처리" />
+              </span>
+              <span class="text">단건 처리</span>
+            </a>
+          </li>
+          <li>
+            <a href="processing.html" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-edit.svg" 
+                data-default="assets/icon/icon-edit.svg"
+                data-active="assets/icon/icon-edit-white.svg"
+                alt="일괄 처리" />
+              </span>
+              <span class="text">일괄 처리</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-find-page.svg" 
+                data-default="assets/icon/icon-find-page.svg"
+                data-active="assets/icon/icon-find-page-white.svg"
+                alt="문서 조회" />
+              </span>
+              <span class="text">문서 조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-archive.svg" 
+                data-default="assets/icon/icon-archive.svg"
+                data-active="assets/icon/icon-archive-white.svg"
+                alt="처리 현황" />
+              </span>
+              <span class="text">처리 현황</span>
+            </a>
+          </li>
+          <p class="title xsmall mb-1 ms-3 mb-2 mt-2 text-secondary">관리자용 메뉴</p>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-supervisor.svg" 
+                data-default="assets/icon/icon-supervisor.svg"
+                data-active="assets/icon/icon-supervisor-white.svg"
+                alt="사용자 관리" />
+              </span>
+              <span class="text">사용자 관리</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item">
+              <span class="icon">
+                <img src="assets/icon/icon-scan.svg" 
+                data-default="assets/icon/icon-scan.svg"
+                data-active="assets/icon/icon-scan-white.svg"
+                alt="인식 설정" />
+              </span>
+              <span class="text">인식 설정</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- main -->
+      <div class="main">
+        <!-- header -->
+        <header class="topbar">
+          <div class="d-flex align-items-center gap-3">
+            <button id="btnToggle" class="icon-menu"></button>
+            <p class="title">대시보드</p>
+          </div>
+          <div class="topbar-right">
+            <!-- 유저 -->
+            <div class="user-info">
+              <i class="icon-user02"></i>
+              <div class="d-flex flex-column">
+                <p>User1</p>
+                <span>user1@mail.com</span>
+              </div>
+            </div>
+            <!-- 알림 팝업-->
+            <div class="dropdown mt-1">
+              <button class="notify" data-bs-toggle="dropdown"></button>
+              <div class="dropdown-menu notification-box">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-start mb-4 justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <i class="icon icon-alert me-3"></i>
+                      <div class="d-flex flex-column">
+                        <p class="fs-5 fw-bold">알림</p>
+                        <small class="text-secondary">업무 및 시스템 관련 최신 알림을 확인하세요.</small>
+                      </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="dropdown" aria-label="Close"></button>
+                  </div>
+                  <div class="d-flex mb-3 justify-content-between align-items-center border-bottom border-light pb-1">
+                    <div>
+                      <p class="fs-6 fw-bold">오류/장애 발생 알림</p>
+                      <small class="text-secondary">일부 메뉴 접근이 일시적으로 제한되었습니다. 변경사항을..</small>
+                    </div>
+                    <i class="icon icon-more"></i>   
+                  </div>
+                  <button class="btn btn-primary flex-fill height-40">알림 전체보기</button>
+                </div>
+              </div>
+            </div>
+            <!-- 로그아웃 -->
+            <button class="logout" data-bs-toggle="modal" data-bs-target="#logoutModal"></button>
+            <div class="modal fade logout-modal" id="logoutModal" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-3 width-control">
+                  <div class="d-flex justify-content-between align-items-start mb-4">
+                      <div>
+                        <p class="fs-5 fw-bold mb-1">로그아웃</p>
+                        <small class="text-secondary">로그아웃 하시겠습니까?</small>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="d-flex justify-content-end gap-1">
+                      <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">닫기</button>
+                      <button class="btn btn-primary">확인</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </header>
+        <!-- content -->
+        <section class="content dashboard-layout">
+          <!-- section1 -->
+          <div class="row g-4 mb-4">
+            <!-- 전체 누적 건수 -->
+            <div class="col-3">
+              <div class="row g-3">
+                  <!-- box 1 -->
+                  <div class="col-6">
+                    <div class="card kpi-box gradient">
+                      <div class="card-header mb-3">
+                        <span class="text-white fs-6 text-nowrap">전체 누적 건수</span>
+                      </div>
+                      <div class="d-flex flex-column">
+                        <p class="text-white fs-4 fw-bold mb-1">65,249</p>
+                        <div class="d-inline-flex">
+                          <span class="badge d-inline-flex align-items-center gap-1">
+                            <i class="icon icon-increase"></i>
+                            <span class="fw-normal">2.6%</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- box 2 -->
+                  <div class="col-6">
+                    <div class="card kpi-box">
+                      <div class="card-header mb-3">
+                        <span class="fs-6 text-nowrap">전월 처리 건수</span>
+                      </div>
+                      <div class="d-flex flex-column">
+                        <p class="fs-4 fw-bold mb-1">8,234</p>
+                        <div class="d-inline-flex">
+                          <span class="badge d-inline-flex align-items-center gap-1">
+                            <i class="icon icon-increase-yellow"></i>
+                            <span class="fw-normal">1.6%</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- box 3 -->
+                  <div class="col-6">
+                    <div class="card kpi-box">
+                      <div class="card-header mb-3">
+                        <span class="fs-6 text-nowrap">당월 처리 건수</span>
+                      </div>
+                      <div class="d-flex flex-column">
+                        <p class="fs-4 fw-bold mb-1">7,234</p>
+                        <div class="d-inline-flex">
+                          <span class="badge d-inline-flex align-items-center gap-1">
+                            <i class="icon icon-increase-yellow"></i>
+                            <span class="fw-normal">2.2%</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- box 4 -->
+                  <div class="col-6">
+                    <div class="card kpi-box">
+                      <div class="card-header mb-3">
+                        <span class="fs-6 text-nowrap">전월 대비</span>
+                      </div>
+                      <div class="d-flex flex-column">
+                        <p class="fs-4 fw-bold mb-1">6,234</p>
+                        <div class="d-inline-flex">
+                          <span class="badge d-inline-flex align-items-center gap-1">
+                            <i class="icon icon-increase-yellow"></i>
+                            <span class="fw-normal">2.4%</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+            <!-- 문서 처리 현황 -->
+            <div class="col-4">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-baseline">
+                  <strong>문서 처리 현황</strong>
+                  <div class="right">
+                    <span class="text-muted">업데이트 시간</span>
+                    <span>2023.01.01 11:11</span>                    
+                  </div>
+                </div>
+                <div class="card-body chart">
+                    <canvas id="chart1"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- 전체 문서 처리 현황 -->
+            <div class="col-5">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-baseline">
+                  <strong>전체 문서 처리 현황</strong>
+                  <div class="right">
+                    <span class="text-muted">업데이트 시간</span>
+                    <span>2023.01.01 11:11</span>                    
+                  </div>
+                </div>
+                <div class="card-body chart">
+                  <canvas id="chart2"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- section2  -->
+          <div class="row g-4 mb-4">
+            <div class="col-3">
+              <div class="card stat-card">
+                <div class="d-flex align-items-center">
+                  <i class="icon icon-dash01 me-3"></i>
+                  <div>
+                    <h3 class="fw-bold">1,234</h3>
+                    <p>대기중인 문서</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card stat-card">
+                <div class="d-flex align-items-center">
+                  <i class="icon icon-dash02 me-3"></i>
+                  <div>
+                    <h3 class="fw-bold">1,234</h3>
+                    <p>처리중인 문서</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card stat-card">
+                <div class="d-flex align-items-center">
+                  <i class="icon icon-dash03 me-3"></i>
+                  <div>
+                    <h3 class="fw-bold">1,234</h3>
+                    <p>완료된 문서</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card stat-card">
+                <div class="d-flex align-items-center">
+                  <i class="icon icon-dash04 me-3"></i>
+                  <div>
+                    <h3 class="fw-bold">1,234</h3>
+                    <p>반려된 문서</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- section3 -->
+          <div class="row g-4">
+            <!-- 문서 현황 -->
+            <div class="col-4">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                  <strong>문서 현황</strong>
+                  <div class="right">
+                    <i class="icon icon-more"></i>             
+                  </div>
+                </div>
+                <div class="card-body progress-wrap">
+                  <div class="item d-flex">
+                    <div class="d-flex flex-column me-3 align-items-center">
+                      <i class="icon icon-progress01 mb-1"></i>
+                      <span class="label">500</span>
+                    </div>
+                    <div class="d-flex flex-column flex-fill progress-list">
+                      <div class="d-flex justify-content-between">
+                        <span class="title mb-3">대기중인 문서</span>
+                        <div class="right">
+                          <span class="small">10</span>
+                          <i class="icon icon-arrow-right"></i>
+                        </div>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar" data-percent="70"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item d-flex">
+                    <div class="d-flex flex-column me-3 align-items-center">
+                      <i class="icon icon-progress02 mb-1"></i>
+                      <span class="label">500</span>
+                    </div>
+                    <div class="d-flex flex-column flex-fill progress-list">
+                      <div class="d-flex justify-content-between">
+                        <span class="title mb-3">처리중인 문서</span>
+                        <div class="right">
+                          <span class="small">10</span>
+                          <i class="icon icon-arrow-right"></i>
+                        </div>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar"  data-percent="40"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item d-flex">
+                    <div class="d-flex flex-column me-3 align-items-center">
+                      <i class="icon icon-progress03 mb-1"></i>
+                      <span class="label">500</span>
+                    </div>
+                    <div class="d-flex flex-column flex-fill progress-list">
+                      <div class="d-flex justify-content-between">
+                        <span class="title mb-3">완료된 문서</span>
+                        <div class="right">
+                          <span class="small">10</span>
+                          <i class="icon icon-arrow-right"></i>
+                        </div>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar"  data-percent="80"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item d-flex">
+                    <div class="d-flex flex-column me-3 align-items-center">
+                      <i class="icon icon-progress04 mb-1"></i>
+                      <span class="label">500</span>
+                    </div>
+                    <div class="d-flex flex-column flex-fill progress-list">
+                      <div class="d-flex justify-content-between">
+                        <span class="title mb-3">반려된 문서</span>
+                        <div class="right">
+                          <span class="small">10</span>
+                          <i class="icon icon-arrow-right"></i>
+                        </div>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar"  data-percent="20"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 사용자별 현황 -->
+            <div class="col-8">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                  <strong>사용자별 현황</strong>
+                  <div class="right">
+                    <i class="icon icon-more"></i>             
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                  <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>사용자명</th>
+                        <th>부서</th>
+                        <th>진행상태</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>01</td>
+                        <td>user1</td>
+                        <td>정보보안팀</td>
+                        <td>50%</td>
+                      </tr>
+                      <tr>
+                        <td>02</td>
+                        <td>user2</td>
+                        <td>정보보안팀</td>
+                        <td>50%</td>
+                      </tr>
+                      <tr>
+                        <td>03</td>
+                        <td>user3</td>
+                        <td>정보보안팀</td>
+                        <td>50%</td>
+                      </tr>
+                      <tr>
+                        <td>03</td>
+                        <td>user3</td>
+                        <td>정보보안팀</td>
+                        <td>50%</td>
+                      </tr>
+                      <tr>
+                        <td>03</td>
+                        <td>user3</td>
+                        <td>정보보안팀</td>
+                        <td>50%</td>
+                      </tr>
+                      <tr>
+                        <td>03</td>
+                        <td>user3</td>
+                        <td>정보보안팀</td>
+                        <td>50%</td>
+                      </tr>
+                      <tr>
+                        <td>03</td>
+                        <td>user3</td>
+                        <td>정보보안팀</td>
+                        <td>50%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // 페이지 로드 시 모달 자동 오픈
+        const modal = new bootstrap.Modal(document.getElementById('startModal'));
+        modal.show();
+
+        // 버튼 클릭 시 새 탭으로 페이지 열기
+        document.getElementById('movePageBtn').addEventListener('click', function () {
+          window.open('readme_text.html', '_blank');
+        });
+      });
+      </script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart.js"></script>
+     
+
+  </body>
+</html>
