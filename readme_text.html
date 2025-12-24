@@ -1,34 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    ** KoreanRe 코리안리 ICR Dashboard 서비스 구축 Portfolio
+  <meta charset="UTF-8" />
+  <title>KoreanRe ICR Dashboard Portfolio 안내</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    ## ⚠️ 주의 사항
-    이 프로젝트는 포트폴리오 용도로 제작된 대시보드 기반 ICR 서비스입니다. 실제 데이터와 보안 문제로 인해 일부 내용은 대체 텍스트나 샘플 데이터를 사용했으며, 
-    로고 및 일부 시각 요소도 변경되어 있습니다. 
-    > 기능 구현은 **UI/UX 중심**이며, 실제 백엔드 연동은 포함되지 않았습니다. 
-    
-    
-    ## 🔗Live Demo 
-    [코리안리 ICR Dashboard 포트폴리오 보기] 
-    https://nrkim0.github.io/ICR-dashboard-portfolio/index.html
-    
-    
-    ## 프로젝트 개요 
-    - 목적: 대시보드 중심의 ICR 서비스 UI/UX 설계 및 구현  
-    - 사용언어: HTML, CSS, JavaScript (파일 분리 구조)  
-    - 주요 특징 : 
-      - 메뉴 구성: 서비스에서는 다양한 메뉴가 존재하고 있으나,
-      **보안 상의 이유로 포트폴리오에서는 `대시보드`, `문서등록`, `일괄처리` 3개의 메뉴만 클릭 가능** 하도록 제한했습니다.  
-      - Bootstrap 5 기반 대시보드 UI
-      - 반응형 레이아웃 및 재사용 구조 설계
-      - KPI 카드, 알림 팝업, 모달 컴포넌트, 문서 미리보기 스크롤 등 js 구현
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+
+    <!-- 제목 -->
+    <div class="mb-4">
+      <h2 class="fw-bold">
+        KoreanRe(코리안리) ICR Dashboard 서비스 구축 Portfolio
+      </h2>
+      <hr>
+    </div>
+
+    <!-- 주의사항 -->
+    <div class="alert alert-warning">
+      <h5 class="fw-semibold mb-2">⚠️ 주의 사항</h5>
+      <p class="mb-2">
+        이 프로젝트는 <strong>포트폴리오 용도</strong>로 제작된
+        대시보드 기반 ICR 서비스입니다.</br>
+        실제 데이터와 보안 문제로 인해 일부 내용은
+        대체 텍스트나 샘플 데이터를 사용했으며,
+        로고 및 일부 시각 요소도 변경되어 있습니다.
+      </p>
+      <p class="mb-0">
+        기능 구현은 <strong>UI/UX 중심</strong>이며,
+        실제 백엔드 연동은 포함되어 있지 않습니다.
+      </p>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="mb-4">
+      <h5 class="fw-semibold">🔗 Live Demo</h5>
+      <a
+        href="https://nrkim0.github.io/koreanre-icr-dashboard-portfolio/"
+        target="_blank"
+        class="btn btn-outline-primary mt-2"
+      >
+        코리안리 ICR Dashboard 포트폴리오 보기
+      </a>
+    </div>
+
+    <!-- 프로젝트 개요 -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title fw-semibold mb-3">프로젝트 개요</h5>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>목적</strong><br>
+            대시보드 중심의 ICR 서비스 UI/UX 설계 및 구현
+          </li>
+          <li class="list-group-item">
+            <strong>사용 언어</strong><br>
+            HTML, CSS, JavaScript (파일 분리 구조)
+          </li>
+          <li class="list-group-item">
+            <strong>메뉴 구성</strong><br>
+            실제 서비스에는 다양한 메뉴가 존재하나,
+            <strong>보안 상의 이유로</strong>
+            포트폴리오에서는
+            <code>대시보드</code>, <code>문서등록</code>, <code>일괄처리</code>
+            3개의 메뉴만 클릭 가능하도록 제한
+          </li>
+          <li class="list-group-item">
+            <strong>주요 특징</strong>
+            <ul class="mt-2">
+              <li>Bootstrap 5 기반 대시보드 UI</li>
+              <li>반응형 레이아웃 및 재사용 구조 설계</li>
+              <li>
+                KPI 카드, 알림 팝업, 모달 컴포넌트,
+                문서 미리보기 스크롤 등 JavaScript 구현
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 
 </body>
-
 </html>
